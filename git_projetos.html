@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Portfólio Profissional</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #0a0f1e;
+      color: #e2e8f0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Navegação ── */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(10, 15, 30, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid rgba(99, 179, 237, 0.15);
+      padding: 0 2rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 50;
+    }
+
+    .nav-brand {
+      font-size: 18px;
+      font-weight: 600;
+      background: linear-gradient(135deg, #63b3ed, #4fd1c5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.3px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: #94a3b8;
+      text-decoration: none;
+      transition: color 0.2s;
+      letter-spacing: 0.3px;
+    }
+
+    .nav-links a:hover { color: #e2e8f0; }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(66, 153, 225, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(66, 153, 225, 0.1);
+      border: 0.5px solid rgba(66, 153, 225, 0.3);
+      color: #63b3ed;
+      font-size: 12px;
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #4fd1c5;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .hero h1 {
+      font-size: 52px;
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -1.5px;
+      margin-bottom: 1rem;
+      color: #f1f5f9;
+    }
+
+    .hero h1 .highlight {
+      background: linear-gradient(135deg, #63b3ed 0%, #4fd1c5 50%, #68d391 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 16px;
+      color: #64748b;
+      max-width: 420px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #3182ce, #2b6cb0);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 11px 28px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+      box-shadow: 0 0 30px rgba(49, 130, 206, 0.3);
+    }
+
+    .hero-cta:hover { opacity: 0.85; }
+
+    /* ── Projetos ── */
+    .section {
+      padding: 5rem 2rem;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .section-header { margin-bottom: 2.5rem; }
+
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #4fd1c5;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 28px;
+      font-weight: 600;
+      color: #f1f5f9;
+      letter-spacing: -0.5px;
+    }
+
+    .section-sub {
+      font-size: 14px;
+      color: #475569;
+      margin-top: 6px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 600px) {
+      .projects-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 36px; }
+    }
+
+    .project-card {
+      background: #111827;
+      border: 0.5px solid rgba(255, 255, 255, 0.07);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .project-card:hover {
+      border-color: rgba(99, 179, 237, 0.25);
+      transform: translateY(-2px);
+    }
+
+    .card-thumb {
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-thumb-1 { background: linear-gradient(135deg, #1a2744 0%, #0f1c3a 100%); }
+    .card-thumb-2 { background: linear-gradient(135deg, #1a2435 0%, #0d1f1a 100%); }
+
+    .thumb-grid {
+      position: absolute;
+      inset: 0;
+      opacity: 0.15;
+      background-image:
+        linear-gradient(rgba(99, 179, 237, 0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 179, 237, 0.3) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    .thumb-icon {
+      position: relative;
+      z-index: 1;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    .thumb-icon-1 {
+      background: rgba(49, 130, 206, 0.2);
+      border: 0.5px solid rgba(99, 179, 237, 0.3);
+      color: #63b3ed;
+    }
+
+    .thumb-icon-2 {
+      background: rgba(49, 175, 130, 0.15);
+      border: 0.5px solid rgba(79, 209, 197, 0.3);
+      color: #4fd1c5;
+    }
+
+    .card-body { padding: 18px 20px; }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #e2e8f0;
+      margin-bottom: 8px;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+
+    .card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .tag {
+      font-size: 11px;
+      font-family: 'Courier New', monospace;
+      background: rgba(255, 255, 255, 0.05);
+      border: 0.5px solid rgba(255, 255, 255, 0.1);
+      color: #94a3b8;
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    /* ── Contato ── */
+    .contact-section {
+      padding: 4rem 2rem 5rem;
+      text-align: center;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .contact-section h2 {
+      font-size: 28px;
+      font-weight: 600;
+      color: #f1f5f9;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .contact-section p {
+      font-size: 14px;
+      color: #475569;
+      margin-bottom: 2rem;
+    }
+
+    .contact-btns {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border: 0.5px solid rgba(255, 255, 255, 0.12);
+      color: #94a3b8;
+      font-size: 13px;
+      padding: 10px 22px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-secondary:hover { background: rgba(255, 255, 255, 0.09); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #3182ce, #2b6cb0);
+      color: #fff;
+      font-size: 13px;
+      padding: 10px 22px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity 0.2s;
+      box-shadow: 0 0 20px rgba(49, 130, 206, 0.25);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-primary:hover { opacity: 0.85; }
+
+    /* ── Rodapé ── */
+    footer {
+      border-top: 0.5px solid rgba(255, 255, 255, 0.06);
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 12px;
+      color: #334155;
+      letter-spacing: 0.3px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navegação -->
+  <nav>
+    <span class="nav-brand">Dev.Nome</span>
+    <div class="nav-links">
+      <a href="#inicio">Início</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#contato">Contato</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header id="inicio" class="hero">
+    <div>
+      <div class="hero-badge">
+        <span class="hero-dot"></span>
+        Disponível para projetos
+      </div>
+      <h1>
+        Olá, eu sou um<br>
+        <span class="highlight">Desenvolvedor Full Stack</span>
+      </h1>
+      <p>Construindo aplicações web modernas, rápidas e focadas na experiência do usuário.</p>
+      <a href="#projetos" class="hero-cta">
+        <i class="ti ti-layout-grid"></i>
+        Ver Projetos
+      </a>
+    </div>
+  </header>
+
+  <!-- Projetos -->
+  <section id="projetos" class="section">
+    <div class="section-header">
+      <p class="section-eyebrow">Portfólio</p>
+      <h2 class="section-title">Projetos em destaque</h2>
+      <p class="section-sub">Alguns dos meus trabalhos mais recentes desenvolvidos do zero.</p>
+    </div>
+
+    <div class="projects-grid">
+      <!-- Card 1 -->
+      <div class="project-card">
+        <div class="card-thumb card-thumb-1">
+          <div class="thumb-grid"></div>
+          <div class="thumb-icon thumb-icon-1">
+            <i class="ti ti-shopping-cart"></i>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Plataforma de E-commerce</h3>
+          <p class="card-desc">Aplicação completa com carrinho, integração de pagamentos e painel administrativo responsivo.</p>
+          <div class="card-tags">
+            <span class="tag">Next.js</span>
+            <span class="tag">Tailwind</span>
+            <span class="tag">Prisma</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="project-card">
+        <div class="card-thumb card-thumb-2">
+          <div class="thumb-grid"></div>
+          <div class="thumb-icon thumb-icon-2">
+            <i class="ti ti-chart-line"></i>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Dashboard Financeiro</h3>
+          <p class="card-desc">Visualizador de métricas em tempo real com gráficos interativos e exportação de relatórios.</p>
+          <div class="card-tags">
+            <span class="tag">React</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">Chart.js</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contato -->
+  <section id="contato" class="contact-section">
+    <h2>Vamos trabalhar juntos?</h2>
+    <p>Estou sempre aberto a novas propostas e projetos desafiadores.</p>
+    <div class="contact-btns">
+      <a href="mailto:seu-email@gmail.com" class="btn-secondary">
+        <i class="ti ti-mail"></i>
+        Enviar e-mail
+      </a>
+      <a href="https://linkedin.com" target="_blank" class="btn-primary">
+        <i class="ti ti-brand-linkedin"></i>
+        LinkedIn
+      </a>
+    </div>
+  </section>
+
+  <!-- Rodapé -->
+  <footer>
+    © 2026 Desenvolvedor Nome · Criado com HTML & CSS
+  </footer>
+
+</body>
+</html>
